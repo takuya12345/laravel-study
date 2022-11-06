@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UtilityController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\RequestSampleController;
+use GuzzleHttp\Psr7\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,12 @@ Route::get('/monty-hall', [GameController::class, 'montyHall']);
 // リクエスト
 Route::get('/form', [RequestSampleController::class, 'form']);
 Route::get('/query-strings', [RequestSampleController::class, 'queryStrings']);
+
+// パラメーターパラメーター
+Route::get('/users/{id}', [RequestSampleController::class, 'profile'])->name('profile');
+Route::get('/products/{category}/{year}', [RequestSampleController::class, 'productsArchive']);
+Route::get('/route-link', [RequestSampleController::class, 'routeLink'])->name('profile');
+
+// login
+Route::get('/login', [RequestSampleController::class, 'loginform']);
+Route::post('/login', [RequestSampleController::class, 'login'])->name('login');
