@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UtilityController;
@@ -42,3 +43,6 @@ Route::get('/route-link', [RequestSampleController::class, 'routeLink'])->name('
 // login
 Route::get('/login', [RequestSampleController::class, 'loginform']);
 Route::post('/login', [RequestSampleController::class, 'login'])->name('login');
+
+// event
+Route::resource('/events', EventController::class)->only(['index', 'create', 'store']);
