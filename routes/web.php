@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UtilityController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\RequestSampleController;
+use App\Http\Controllers\HiLowController;
 use GuzzleHttp\Psr7\Request;
 
 /*
@@ -45,4 +46,8 @@ Route::get('/login', [RequestSampleController::class, 'loginform']);
 Route::post('/login', [RequestSampleController::class, 'login'])->name('login');
 
 // event
-Route::resource('/events', EventController::class)->only(['index', 'create', 'store']);
+Route::resource('/events', EventController::class)->only(['create', 'store']);
+
+// ハイローゲーム
+Route::get('/hi-low', [HiLowController::class, 'index'])->name('hi-low');
+Route::post('/hi-low', [HiLowController::class, 'result']);
