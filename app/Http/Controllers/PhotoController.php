@@ -28,7 +28,9 @@ class PhotoController extends Controller
     public function store(Request $request)
     {
         $savedFilePath = $request->file('image')->store('photos', 'public');
+        Log::debug(($savedFilePath));
         $fileName = pathinfo($savedFilePath, PATHINFO_BASENAME);
+        Log::debug($fileName);
 
         // return to_route('photos.create')->with('success', 'アップロードしました');
         return to_route('photos.show', ['photo' => $fileName])->with('success', 'アップロードしました');
@@ -68,5 +70,10 @@ class PhotoController extends Controller
     {
         Storage::disk('public')->delete('photos/' . $fileName);
         return to_route('photos.create')->with('success', '削除しました');
+    }
+
+    public function download($fileName)
+    {
+        return Storage::disk('public')->download('photos/' . $fileName, 'アップロード画面.jpg');
     }
 }

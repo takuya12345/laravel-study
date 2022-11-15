@@ -55,3 +55,4 @@ Route::post('/hi-low', [HiLowController::class, 'result']);
 
 // ファイル管理
 Route::resource('/photos', PhotoController::class)->only(['create', 'store', 'show', 'destroy']);
+Route::get('/photos/{photo}/download', [PhotoController::class])->name('photos.download');
